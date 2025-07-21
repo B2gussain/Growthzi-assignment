@@ -57,7 +57,7 @@ const p_form= async(e)=>{
   e.preventDefault()
   setp_edit(false)
    try {
-    const response = await fetch("http://localhost:5000/update-section", {
+    const response = await fetch("https://growthzi-assignment-backend.onrender.com/update-section", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
