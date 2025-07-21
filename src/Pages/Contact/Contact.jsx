@@ -14,7 +14,7 @@ import { RxCross2 } from "react-icons/rx";
 import { CiEdit } from "react-icons/ci";
 
 const Contact = () => {
-  const [button_edit, setbutton_edit] = useState(true)
+  const [button_edit, setbutton_edit] = useState(false)
   const [p_edit, setp_edit] = useState(false)
 
   const [url, seturl] = useState("")
