@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./Contact.css";
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa6";
@@ -14,12 +14,18 @@ import { RxCross2 } from "react-icons/rx";
 import { CiEdit } from "react-icons/ci";
 
 const Contact = () => {
-  const [button_edit, setbutton_edit] = useState(false)
+  const [button_edit, setbutton_edit] = useState(true)
   const [p_edit, setp_edit] = useState(false)
 
   const [url, seturl] = useState("")
   const [buttontext, setbuttontext] = useState("+ Add Button")
+  const [buttonstyle, setbuttonstyle] = useState("Bordered")
+  const [buttoncolor, setbuttoncolor] = useState("white")
+    const [buttonsize, setbuttonsize] = useState("medium")
+
   const [paragraph, setparagraph] = useState("We’d love to hear from you! Whether you have a question, need assistance, or want to make a reservation, the team at Imperical Grand Hotel is here to help make your experience truly memorable.")
+
+const edited_button = useRef(null)
 
   const button_form_toggle=()=>{
     if(!button_edit){
@@ -37,6 +43,25 @@ const Contact = () => {
 
 const button_form=(e)=>{
   e.preventDefault()
+  console.log(buttonstyle,buttoncolor,buttontext,url,buttonsize)
+  if(buttonstyle=="fill"){
+    edited_button.current.style.backgroundColor = buttoncolor; 
+    edited_button.current.style.border = "none"; 
+  }
+   else{
+    edited_button.current.style.backgroundColor ="transparent"; 
+    edited_button.current.style.border = `2px dashed ${buttoncolor}`; 
+  }
+
+  if(buttonsize=="small"){
+    edited_button.current.style.fontSize="10px";
+  }
+  else if(buttonsize=="medium"){
+    edited_button.current.style.fontSize="15px";
+  }
+  else if(buttonsize=="large"){
+    edited_button.current.style.fontSize="20px";
+  }
   setbutton_edit(false)
 }
 const delete_button_form=()=>{
@@ -90,11 +115,54 @@ console.log(url)
           <RxCross2 onClick={cross_form_toggle} className="cross_icon" />
           <h2>Link Button to page or URL</h2>
           <p>You can select any specific page or paste URL</p>
-          <label htmlFor="url">Enter the URL</label>
           <input type="url" placeholder="Enter the URL" name="url" value={url} onChange={(e)=>seturl(e.target.value)} required />
-          <label htmlFor="name">Enter the Button Name</label>
+           <div className="button_style_div">
+            <div className="lable_block"><label htmlFor="style">Button Style</label>
+            <p>Filled with solid color or outlined</p></div>
+            
+
+           <select
+        value={buttonstyle} name="style"
+        onChange={(e) => setbuttonstyle(e.target.value)}
+       
+      >
+        <option  value="fill">Fill</option>
+        <option value="Bordered">Bordered</option>
+      </select>
+          </div>
+          <div className="button_text_div">
+            
+            <div className="lable_block">
+<label htmlFor="name">Button Text</label>
+<p>Add call to action of button ie.name</p>
+            </div>
 
           <input type="text" name="name" placeholder="Enter the Button Text" value={buttontext}  onChange={(e)=>setbuttontext(e.target.value)} required  />
+          </div>
+           <div className="button_color_div">
+            <div className="lable_block"><label htmlFor="color">Color</label>
+            <p>Button color</p></div>
+            
+
+          <input type="color" name="color"  value={buttoncolor}  onChange={(e)=>setbuttoncolor(e.target.value)} required   />
+          </div>
+              <div className="button_size_div">
+            <div className="lable_block"><label htmlFor="size">Button Size</label>
+            <p>Size of button</p></div>
+            
+
+           <select
+        value={buttonsize} name="size"
+        onChange={(e) => setbuttonsize(e.target.value)}
+       
+      >
+        <option  value="small">small</option>
+        <option value="medium">medium</option>
+        <option value="large">large</option>
+
+      </select>
+          </div>
+          
           <button className="save_btn btn">Save Button</button>
           <button onClick={delete_button_form} className="delete_btn btn">Delete</button>
         </form> }
@@ -113,7 +181,7 @@ console.log(url)
           <br />
           With Us
         </h1>
-        {url ? <a  href={url} className="url_button" target="_blank">{buttontext}</a>: <button  className="edit_button" onClick={button_form_toggle}>{buttontext}</button>}
+        {url ? <a  href={url} className="url_button" ref={edited_button} target="_blank">{buttontext}</a>: <button   className="edit_button" onClick={button_form_toggle}>{buttontext}</button>}
         <p className="edit_p">{paragraph}<CiEdit  onClick={p_form_toggle}  className="edit_p_icon" /></p>
        
         <form className="form_ui" action="">

@@ -370,7 +370,10 @@
     background: #ffffff;
     color: black;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
+h2,p{
+    font-size: 15px;
+    margin-bottom: 10px;
+}
     .cross_icon {
         cursor: pointer;
         position: absolute;
@@ -379,7 +382,46 @@
         height: 25px;
         width: 25px;
     }
+.button_style_div,.button_text_div,.button_color_div,.button_size_div{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    .lable_block{
+        display: flex;
+        /* justify-content: center; */
+        flex-direction: column;
+         label {
+        /* margin-top: 5px; */
+        font-size: 15px;
+        font-weight: bold;
 
+    }
+    p{
+        font-size: 10px;
+    }
+
+
+    }
+    
+
+    input,select {
+       
+        border-radius: 10px;
+        height: 40px;
+        width: 50%;
+        outline: none;
+        border: 1px solid black;
+        
+        background: #ffffff3f;
+
+        padding: 5px 10px;
+         
+        color: black;
+    }
+   
+}
     label {
         margin-top: 10px;
         font-size: 12px;
@@ -390,8 +432,9 @@
         height: 40px;
         width: 100%;
         outline: none;
-        border: none;
-        background: #0000003f;
+        border: 1px solid black;
+        background: #ffffff3f;
+        border-radius: 10px;
 
         padding: 5px 10px;
         color: black;
