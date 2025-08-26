@@ -78,19 +78,20 @@ const p_form_toggle=()=>{
   }
 
 
-const p_form= async(e)=>{
-  e.preventDefault()
-  setp_edit(false)
-   try {
-    const response = await fetch("https://growthzi-assignment-backend.onrender.com/update-section", {
+const p_form = async (e) => {
+  e.preventDefault();
+  setp_edit(false);
+
+  try {
+    const response = await fetch("http://127.0.0.1:5000/update-section", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        component: "ParagraphSection", 
-        field: "paragraphText",         
-        value: paragraph,                
+        component: "ParagraphSection",
+        field: "paragraphText",
+        value: paragraph,
       }),
     });
 
@@ -101,10 +102,10 @@ const p_form= async(e)=>{
     } else {
       console.error("Error:", data.error);
     }
-  } catch (errorr) {
-    console.error("Fetching error:", errorr);
+  } catch (error) {
+    console.error("Fetching error:", error);
   }
-}
+};
 
 console.log(url)
 
